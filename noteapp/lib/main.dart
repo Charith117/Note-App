@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:noteapp/pages/notes_pages.dart';
+import 'package:noteapp/models/note_database.dart';
+import 'package:noteapp/pages/note_pages.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  print('Ensuring Flutter binding initialized...');
+  final noteDatabase = NoteDatabase();
+  await noteDatabase.initialize();
   runApp(const MyApp());
 }
 
@@ -12,8 +17,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     debugShowCheckedModeBanner: false,
-     home:NotePages(),// This trailing comma makes auto-formatting nicer for build methods.
+      debugShowCheckedModeBanner: false,
+      home:NoteApp(),
     );
   }
 }
